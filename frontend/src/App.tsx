@@ -12,7 +12,7 @@ function App() {
   const [projects, setProjects] = useState<Project[]>([])
 
   useEffect(() => {
-    fetch('https://portfolio-backend-v3in.onrender.com')
+    fetch('https://portfolio-backend-v3in.onrender.com/api/projects')
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error("Failed to fetch projects:", err))
