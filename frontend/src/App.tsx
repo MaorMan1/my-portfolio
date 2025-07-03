@@ -19,13 +19,14 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-6">
+  <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-4">
+    <div className="max-w-5xl w-full text-center">
       <h1 className="text-4xl font-bold mb-6">🎮 My Game Projects</h1>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-gray-800 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform"
+            className="bg-gray-800 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform text-left"
           >
             <h2 className="text-xl font-semibold">{project.name}</h2>
             <p className="text-sm text-gray-400 mb-2">{project.description}</p>
@@ -39,7 +40,9 @@ function App() {
         ))}
       </div>
     </div>
-  )
+  </div>
+)
+
 }
 
 export default App
