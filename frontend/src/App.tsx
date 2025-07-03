@@ -1,48 +1,47 @@
-import { useEffect, useState } from 'react'
-
-type Project = {
-  id: number
-  name: string
-  tech: string[]
-  description: string
-  year: number
-}
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([])
+  const location = useLocation()  
+  const currentPath = location.pathname // RealTime update
 
-  useEffect(() => {
-    fetch('https://portfolio-backend-v3in.onrender.com/api/projects')
-      .then((res) => res.json())
-      .then((data) => setProjects(data))  
-      .catch((err) => console.error("Failed to fetch projects:", err))
-  }, [])
+  const isActive = (path: string) =>
+    currentPath === path || currentPath.startsWith(path + '/')
 
-return (
-  <div className="min-h-screen bg-gray-950 text-white px-4 py-12">
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-10">🎮 My Game Projects</h1>
+  return (
+    <div className="min-h-screen bg-gray-950 text-white">
+      <nav className="bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
 
-      <div className="flex flex-wrap justify-center gap-8">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-gray-500 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80"
-          >
-            <h2 className="text-xl font-semibold">{project.name}</h2>
-            <p className="text-sm text-gray-200 mb-2">{project.description}</p>
-            <div className="text-sm">
-              <strong>Technologies:</strong> {project.tech.join(', ')}
-            </div>
-            <div className="text-sm">
-              <strong>Year:</strong> {project.year}
-            </div>
+          <div className="flex gap-6">
+            <Link
+              to="/"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/') && currentPath === '/' ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/projects"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/projects') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Projects
+            </Link>
           </div>
-        ))}
-      </div>
+        </div>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+      </Routes>
     </div>
-  </div>
-)
+  )
 }
 
 export default App
