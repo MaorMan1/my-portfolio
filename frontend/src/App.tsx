@@ -20,9 +20,6 @@ function App() {
 
 return (
   <div className="min-h-screen bg-gray-950 text-white px-4 py-12">
-    <div className="bg-red-500 text-white text-xl p-4 rounded text-center">
-      ✅ If you see a red box, Tailwind is working!
-    </div>  
     <div className="max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-10">🎮 My Game Projects</h1>
 
@@ -30,7 +27,7 @@ return (
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-red-500 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80"
+            className="bg-gray-500 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80"
           >
             <h2 className="text-xl font-semibold">{project.name}</h2>
             <p className="text-sm text-gray-200 mb-2">{project.description}</p>

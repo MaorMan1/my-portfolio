@@ -16,6 +16,13 @@ app.get('/api/projects', (req, res) => {
       description: 'A 2D Tetris remake using C++ and SFML.',
       year: 2025
     },
+    {
+      id: 2,
+      name: 'Pacman Remake',
+      tech: ['C++', 'SFML'],
+      description: 'A Pacman-style game built with C++ and SFML.',
+      year: 2024
+    }
     // Add more projects later
   ]);
 });
