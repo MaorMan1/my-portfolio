@@ -27,7 +27,7 @@ return (
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-80"
+            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80 border border-red-500"
           >
             <h2 className="text-xl font-semibold">{project.name}</h2>
             <p className="text-sm text-gray-400 mb-2">{project.description}</p>
