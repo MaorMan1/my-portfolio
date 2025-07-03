@@ -14,12 +14,15 @@ function App() {
   useEffect(() => {
     fetch('https://portfolio-backend-v3in.onrender.com/api/projects')
       .then((res) => res.json())
-      .then((data) => setProjects(data))
+      .then((data) => setProjects(data))  
       .catch((err) => console.error("Failed to fetch projects:", err))
   }, [])
 
 return (
   <div className="min-h-screen bg-gray-950 text-white px-4 py-12">
+    <div className="bg-red-500 text-white text-xl p-4 rounded text-center">
+      ✅ If you see a red box, Tailwind is working!
+    </div>  
     <div className="max-w-7xl mx-auto">
       <h1 className="text-4xl font-bold text-center mb-10">🎮 My Game Projects</h1>
 
