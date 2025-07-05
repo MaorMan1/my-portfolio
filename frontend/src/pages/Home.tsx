@@ -2,10 +2,9 @@ import { useState, useRef } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import profilePic from '../assets/ProfilePic.jpg'
 
-
 function Home() {
-  
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [showGlow, setShowGlow] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -15,10 +14,26 @@ function Home() {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     })
+    setShowGlow(true)
   }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!containerRef.current) return
+    const touch = e.touches[0]
+    const rect = containerRef.current.getBoundingClientRect()
+    setMousePos({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    })
+    setShowGlow(true)
+  }
+
+  const handleMouseLeave = () => setShowGlow(false)
+  const handleTouchEnd = () => setShowGlow(false)
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center bg-gray-950 text-white overflow-hidden">
-      {/* 🔮 Glowing blurred background behind profile image */}
+      {/* 🔮 Static blurred glow behind profile image */}
       <div className="absolute w-72 h-72 bg-indigo-600 opacity-30 blur-3xl rounded-full top-20 animate-pulse z-0" />
 
       {/* 👤 Profile Picture */}
@@ -32,14 +47,20 @@ function Home() {
 
       <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10">👋 Hi, I'm Maor Man</h1>
 
+      {/* 📝 Description with interactive glow */}
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
+        onMouseLeave={handleMouseLeave}
+        onTouchEnd={handleTouchEnd}
         className="relative group max-w-3xl mb-8"
       >
-        {/* 🔵 Dynamic circular glow */}
+        {/* 🔵 Glow that appears on hover/touch */}
         <div
-          className="absolute w-48 h-48 bg-indigo-500 rounded-full opacity-60 blur-3xl pointer-events-none transition-transform duration-75"
+          className={`absolute w-48 h-48 bg-indigo-500 rounded-full blur-3xl pointer-events-none transition-opacity duration-300 ${
+            showGlow ? 'opacity-60' : 'opacity-0'
+          }`}
           style={{
             transform: `translate(${mousePos.x - 96}px, ${mousePos.y - 96}px)`,
           }}
@@ -53,7 +74,7 @@ function Home() {
         </p>
       </div>
 
-      {/* 🌐 Social Links with hover effects */}
+      {/* 🌐 Social Icons */}
       <div className="flex space-x-6 text-4xl z-10">
         <a
           href="https://github.com/MaorMan1"
