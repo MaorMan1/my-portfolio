@@ -11,9 +11,9 @@ function Home() {
         className="w-32 h-32 rounded-full mb-6 border-4 border-indigo-500 shadow-lg"
       />
 
-      <h1 className="text-5xl font-bold mb-6">👋 Hi, I'm Maor Man</h1>
+      <h1 className="text-5xl font-bold mb-6 text-gray-400">👋 Hi, I'm Maor Man</h1>
 
-      <p className="text-xl max-w-3xl mb-8 leading-relaxed">
+      <p className="text-xl max-w-3xl mb-8 leading-relaxed text-gray-400">
         I'm a passionate developer who enjoys turning ideas into working code.<br />
         I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
         I love writing clean and efficient code, and I care about user experience.<br />
