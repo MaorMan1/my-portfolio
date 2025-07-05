@@ -39,7 +39,7 @@ function Home() {
       >
         {/* 🔵 Dynamic circular glow */}
         <div
-          className="absolute w-48 h-48 bg-indigo-500 rounded-full opacity-20 blur-3xl pointer-events-none transition-transform duration-75"
+          className="absolute w-48 h-48 bg-indigo-500 rounded-full opacity-60 blur-3xl pointer-events-none transition-transform duration-75"
           style={{
             transform: `translate(${mousePos.x - 96}px, ${mousePos.y - 96}px)`,
           }}
