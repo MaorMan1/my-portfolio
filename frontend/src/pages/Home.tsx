@@ -1,7 +1,21 @@
+import { useState, useRef } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import profilePic from '../assets/ProfilePic.jpg'
 
+
 function Home() {
+  
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center bg-gray-950 text-white overflow-hidden">
       {/* 🔮 Glowing blurred background behind profile image */}
@@ -18,17 +32,26 @@ function Home() {
 
       <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10">👋 Hi, I'm Maor Man</h1>
 
-      <p className="relative text-xl max-w-3xl mb-8 leading-relaxed z-10 text-gray-400 group">
-        {/* ✨ Glowing circle behind text */}
-        <span className="absolute inset-0 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-20 blur-2xl transition duration-300 pointer-events-none"></span>
+      <div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        className="relative group max-w-3xl mb-8"
+      >
+        {/* 🔵 Dynamic circular glow */}
+        <div
+          className="absolute w-48 h-48 bg-indigo-500 rounded-full opacity-20 blur-3xl pointer-events-none transition-transform duration-75"
+          style={{
+            transform: `translate(${mousePos.x - 96}px, ${mousePos.y - 96}px)`,
+          }}
+        />
 
-        <span className="relative z-10">
+        <p className="text-xl leading-relaxed text-gray-300 z-10 relative">
           I'm a passionate developer who enjoys turning ideas into working code.<br />
           I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
           I love writing clean and efficient code, and I care about user experience.<br />
           I also hold a diploma in Practical Electronics Engineering, with hands-on military experience in avionics systems.
-        </span>
-      </p>
+        </p>
+      </div>
 
       {/* 🌐 Social Links with hover effects */}
       <div className="flex space-x-6 text-4xl z-10">
