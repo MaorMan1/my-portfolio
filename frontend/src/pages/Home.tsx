@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaFilePdf } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 function Home() {
   return (
@@ -42,14 +42,6 @@ function Home() {
           className="text-5xl hover:text-indigo-500 transition-colors"
         >
           <FaEnvelope title="Email" />
-        </a>
-        <a 
-          href="/cv.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-5xl hover:text-indigo-500 transition-colors"
-        >
-          <FaFilePdf title="Download CV" />
         </a>
       </div>
     </div>
