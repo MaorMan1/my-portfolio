@@ -18,11 +18,16 @@ function Home() {
 
       <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10">👋 Hi, I'm Maor Man</h1>
 
-      <p className="text-xl max-w-3xl mb-8 leading-relaxed z-10 text-gray-400">
-        I'm a passionate developer who enjoys turning ideas into working code.<br />
-        I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
-        I love writing clean and efficient code, and I care about user experience.<br />
-        I also hold a diploma in Practical Electronics Engineering, with hands-on military experience in avionics systems.
+      <p className="relative text-xl max-w-3xl mb-8 leading-relaxed z-10 text-gray-400 group">
+        {/* ✨ Glowing circle behind text */}
+        <span className="absolute inset-0 rounded-full bg-indigo-500 opacity-0 group-hover:opacity-20 blur-2xl transition duration-300 pointer-events-none"></span>
+
+        <span className="relative z-10">
+          I'm a passionate developer who enjoys turning ideas into working code.<br />
+          I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
+          I love writing clean and efficient code, and I care about user experience.<br />
+          I also hold a diploma in Practical Electronics Engineering, with hands-on military experience in avionics systems.
+        </span>
       </p>
 
       {/* 🌐 Social Links with hover effects */}
