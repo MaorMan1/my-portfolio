@@ -19,7 +19,7 @@ function Projects() {
   }, [])
 
 return (
-  <section>
+  <section id="projects" className="pt-20">
     <div className="min-h-screen bg-gray-950 text-white px-4 py-12">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10">🎮 My Game Projects</h1>
