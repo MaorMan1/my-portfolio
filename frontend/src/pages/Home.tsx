@@ -105,7 +105,9 @@ function Home() {
           <FaEnvelope title="Email" />
         </a>
       </div>
-      <div className="mt-12 animate-bounce text-indigo-500 text-2xl"><strong>↓</strong></div>
+      <a href="#projects" className="mt-12 animate-bounce text-indigo-500 text-2xl hover:text-indigo-300 transition-colors">
+        ↓
+      </a>
     </div>
   )
 }
