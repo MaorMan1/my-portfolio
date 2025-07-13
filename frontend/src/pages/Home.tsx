@@ -105,7 +105,7 @@ function Home() {
           <FaEnvelope title="Email" />
         </a>
       </div>
-      <div className="mt-12 animate-bounce text-indigo-500 text-2xl">↓</div>
+      <div className="mt-12 animate-bounce text-indigo-500 text-2xl"><strong>↓</strong></div>
     </div>
   )
 }
