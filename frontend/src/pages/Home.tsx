@@ -41,7 +41,7 @@ function Home() {
         <img
           src={profilePic}
           alt="Profile"
-          className="w-32 h-32 rounded-full mb-6 border-4 border-indigo-500 shadow-xl hover:scale-105 transition-transform duration-300"
+          className="w-32 h-32 rounded-full mb-6 border-4 border-indigo-500 shadow-xl hover:scale-105 transition-transform duration-300 animate-fade-in"
         />
       </div>
 
