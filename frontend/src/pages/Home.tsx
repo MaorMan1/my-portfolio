@@ -45,9 +45,13 @@ function Home() {
         />
       </div>
 
-      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10">👋 Hi, I'm Maor Man</h1>
+      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10">
+        👋 Hi, I'm Maor Man
+      </h1>
 
-      <p className="text-lg text-indigo-400 mb-2">Game Developer | Software Engineer | Avionics Technician</p>
+      <p className="text-lg text-indigo-300 mb-2">
+        Game Developer | Software Engineer | Avionics Technician
+      </p>
 
       {/* 📝 Description with interactive glow */}
       <div
