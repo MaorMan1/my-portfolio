@@ -45,11 +45,11 @@ function Home() {
         />
       </div>
 
-      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10 animate-fade-in">
+      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10 animate-fade-in delay-100">
         👋 Hi, I'm Maor Man
       </h1>
 
-      <p className="text-lg text-indigo-300 mb-2 animate-fade-in">
+      <p className="text-lg text-indigo-300 mb-2 animate-fade-in delay-200">
         Game Developer | Software Engineer | Avionics Technician
       </p>
 
