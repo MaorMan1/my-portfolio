@@ -53,6 +53,10 @@ function Home() {
         Game Developer | Software Engineer | Avionics Technician
       </p>
 
+
+      
+      <div className="mt-12 animate-bounce text-indigo-500 text-2xl">↓</div>
+
       {/* 📝 Description with interactive glow */}
       <div
         ref={containerRef}
