@@ -46,11 +46,11 @@ function Home() {
         />
       </div>
 
-      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10 animate-fade-in delay-100">
+      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10 animate-fade-in delay-100 font-pixel">
         👋 Hi, I'm Maor Man
       </h1>
 
-      <p className="text-lg text-indigo-300 mb-2 animate-fade-in delay-200">
+      <p className="text-lg text-indigo-300 mb-2 animate-fade-in delay-200 font-pixel">
         Game Developer | Software Engineer | Avionics Technician
       </p>
 
@@ -73,7 +73,7 @@ function Home() {
           }}
         />
 
-        <p className="text-xl leading-relaxed text-gray-300 z-10 relative">
+        <p className="text-xl leading-relaxed text-gray-300 z-10 relative font-pixel">
           I'm a passionate developer who enjoys turning ideas into working code.<br />
           I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
           I love writing clean and efficient code, and I care about user experience.<br />
