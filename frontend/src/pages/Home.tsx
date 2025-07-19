@@ -101,7 +101,7 @@ function Home() {
         </a>
         <a
           href="mailto:maorman777@gmail.com"
-          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200"
+          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200 pixel-icon"
         >
           <FaEnvelope title="Email" />
         </a>
