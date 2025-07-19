@@ -104,10 +104,13 @@ function Home() {
         >
           <FaEnvelope title="Email" />
         </a>
+        <a
+          href="/projects"
+          className="mt-6 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded transition duration-300"
+        >
+        View My Projects
+        </a>
       </div>
-      <a href="#projects" className="mt-12 animate-bounce text-indigo-500 text-2xl hover:text-indigo-300 transition-colors">
-        ↓
-      </a>
     </div>
   )
 }
