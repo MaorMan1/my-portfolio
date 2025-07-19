@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import profilePic from '../assets/ProfilePic.jpg'
 
 function Home() {
@@ -104,12 +105,13 @@ function Home() {
         >
           <FaEnvelope title="Email" />
         </a>
-        <a
-          href="/projects"
-          className="mt-6 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded transition duration-300"
+        <br/>
+        <Link
+          to="/projects"
+          className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded transition duration-300"
         >
-        View My Projects
-        </a>
+          View My Projects
+        </Link>
       </div>
     </div>
   )
