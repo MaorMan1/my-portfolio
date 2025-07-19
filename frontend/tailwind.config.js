@@ -15,6 +15,9 @@ module.exports = {
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
       },
+      fontFamily: {
+        'pixel': ['"Press Start 2P"', 'cursive']
+      },
     },
   },
   plugins: [],
