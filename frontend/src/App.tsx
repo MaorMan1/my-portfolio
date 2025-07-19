@@ -10,7 +10,7 @@ function App() {
     currentPath === path || currentPath.startsWith(path + '/')
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="font-pixel min-h-screen bg-gray-950 text-white">
       <nav className="bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
