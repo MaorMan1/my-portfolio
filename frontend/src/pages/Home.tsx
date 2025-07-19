@@ -110,7 +110,7 @@ function Home() {
         to="/projects"
         className="mt-8 px-6 py-3 bg-indigo-600 text-white font-bold rounded border-4 border-indigo-800 shadow-lg 
                   hover:bg-indigo-700 hover:shadow-indigo-500 transition duration-300
-                  text-xl tracking-wider pixel-font"
+                  text-xl tracking-wider font-pixel"
       >
         ▶ View My Projects
       </Link>
