@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-white">
-      <nav className="bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800">
+      <nav className="sticky top-0 z-50 bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800 backdrop-blur-md bg-opacity-80">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
 
