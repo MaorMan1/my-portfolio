@@ -9,15 +9,9 @@ Developed multiple academic and personal projects including a Tetris remake and 
   {
     title: 'Diploma in Practical Electronics Engineering',
     institution: 'ORT Colleges',
-    period: '2013 - 2016',
+    period: '2014 - 2016',
     description: `Studied electronics theory, circuit design, and embedded systems. 
 Gained hands-on skills with microcontrollers and hardware tools.`
-  },
-  {
-    title: 'Military Avionics Technician',
-    institution: 'Israeli Air Force',
-    period: '2016 - 2020',
-    description: `Served as an Apache helicopter technician, specializing in maintenance and troubleshooting of avionics systems including fire control, navigation, and communication.`
   },
 ]
 
