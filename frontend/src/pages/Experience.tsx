@@ -8,7 +8,7 @@ const experiences = [
     location: 'Israel',
     period: '2016 - 2021',
     shortDesc: `Served as a technician handling avionics systems...`,
-    fullDesc: `Served as an Apache helicopter technician, handling avionics maintenance and real-time troubleshooting in systems like fire control, navigation, communication, and electronic warfare. Led small technical teams and maintained high operational readiness under pressure.`,
+    fullDesc: `Served as an Apache helicopter technician, handling avionics maintenance and real-time troubleshooting in systems like fire control, navigation, communication, and electronic warfare. Led technical teams and maintained high operational readiness under pressure.`,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ function Experience() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-4 py-12">
+    <div className="min-h-screen text-white px-4 py-12">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10">🛠 Work Experience</h1>
 
