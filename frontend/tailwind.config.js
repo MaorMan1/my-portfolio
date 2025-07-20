@@ -11,7 +11,7 @@ module.exports = {
         'fade-in': 'fadeIn 1s ease-out forwards',
       },
       backgroundImage: {
-        'main-bg': "url('./src/assets/background.jpg')",
+        'main-bg': "url('/background.jpg')",
       },
       keyframes: {
         fadeIn: {
