@@ -31,14 +31,15 @@ function Experience() {
   return (
     <div className="min-h-screen text-white px-4 py-12">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-10">🛠 Work Experience</h1>
+        <h1 className="text-4xl font-bold text-center mb-10 animate-fade-in">🛠 Work Experience</h1>
 
         <div className="space-y-8">
-          {experiences.map((exp) => (
+          {experiences.map((exp, index) => (
             <div
               key={exp.id}
-              className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-105"
               onClick={() => toggleExpand(exp.id)}
+              className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-105 cursor-pointer animate-fade-up"
+              style={{ animationDelay: `${index * 200}ms`, animationFillMode: 'forwards' }}
             >
               <h2 className="text-2xl font-semibold text-indigo-400">{exp.title}</h2>
               <p className="text-sm text-gray-400 mb-1">
@@ -48,7 +49,7 @@ function Experience() {
               <p className="text-gray-300">
                 {expandedId === exp.id ? exp.fullDesc : exp.shortDesc}
               </p>
-              <p className="text-indigo-500 mt-2 text-sm cursor-pointer">
+              <p className="text-indigo-500 mt-2 text-sm">
                 {expandedId === exp.id ? 'Click to collapse ▲' : 'Click to expand ▼'}
               </p>
             </div>
