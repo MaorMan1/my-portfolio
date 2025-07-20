@@ -10,6 +10,9 @@ module.exports = {
       animation: {
         'fade-in': 'fadeIn 1s ease-out forwards',
       },
+      backgroundImage: {
+        'main-bg': "url('/src/assets/background.jpg')",
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: 0, transform: 'translateY(10px)' },

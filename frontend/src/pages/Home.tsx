@@ -87,7 +87,7 @@ function Home() {
           href="https://github.com/MaorMan1"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200 pixel-icon"
+          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200"
         >
           <FaGithub title="GitHub" />
         </a>
