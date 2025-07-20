@@ -37,7 +37,7 @@ function Experience() {
           {experiences.map((exp) => (
             <div
               key={exp.id}
-              className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-105"
               onClick={() => toggleExpand(exp.id)}
             >
               <h2 className="text-2xl font-semibold text-indigo-400">{exp.title}</h2>
@@ -48,7 +48,7 @@ function Experience() {
               <p className="text-gray-300">
                 {expandedId === exp.id ? exp.fullDesc : exp.shortDesc}
               </p>
-              <p className="text-indigo-500 mt-2 text-sm">
+              <p className="text-indigo-500 mt-2 text-sm cursor-pointer">
                 {expandedId === exp.id ? 'Click to collapse ▲' : 'Click to expand ▼'}
               </p>
             </div>
