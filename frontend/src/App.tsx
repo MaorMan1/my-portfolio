@@ -1,6 +1,7 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import Education from './pages/Education'
 
 function App() {
   const location = useLocation()  
@@ -32,6 +33,14 @@ function App() {
             >
               Projects
             </Link>
+            <Link
+              to="/education"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/education') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Education
+            </Link>
           </div>
         </div>
       </nav>
@@ -39,6 +48,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/education" element={<Education />} />
       </Routes>
     </div>
   )
