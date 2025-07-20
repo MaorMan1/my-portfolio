@@ -33,7 +33,7 @@ function Home() {
   const handleTouchEnd = () => setShowGlow(false)
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center bg-gray-950 text-white overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center text-white overflow-hidden">
       {/* 🔮 Static blurred glow behind profile image */}
       <div className="absolute w-72 h-72 bg-indigo-600 opacity-30 blur-3xl rounded-full top-20 animate-pulse z-0" />
 
