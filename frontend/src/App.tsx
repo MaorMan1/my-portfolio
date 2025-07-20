@@ -2,6 +2,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Education from './pages/Education'
+import Experience from './pages/Experience'
 
 function App() {
   const location = useLocation()  
@@ -41,6 +42,14 @@ function App() {
             >
               Education
             </Link>
+            <Link
+              to="/experience"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/experience') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Experience
+            </Link>
           </div>
         </div>
       </nav>
@@ -49,6 +58,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/education" element={<Education />} />
+        <Route path="/experience" element={<Experience />} />
       </Routes>
     </div>
   )
