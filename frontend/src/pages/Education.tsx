@@ -17,7 +17,7 @@ Gained hands-on skills with microcontrollers and hardware tools.`
 
 function Education() {
   return (
-    <section className="min-h-screen bg-gray-950 text-white px-4 py-12">
+    <section className="min-h-screen text-white px-4 py-12">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-12">🎓 Education</h1>
 
