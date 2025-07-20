@@ -1,5 +1,3 @@
-import React from 'react'
-
 const educationData = [
   {
     title: 'B.Sc. in Computer Science',
