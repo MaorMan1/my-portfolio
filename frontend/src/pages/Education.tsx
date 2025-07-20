@@ -19,13 +19,14 @@ function Education() {
   return (
     <section className="min-h-screen text-white px-4 py-12">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-12">🎓 Education</h1>
+        <h1 className="text-4xl font-bold text-center mb-12 animate-fade-in">🎓 Education</h1>
 
         <div className="space-y-10">
           {educationData.map((edu, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-[1.01] transition-transform"
+              className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-[1.01] transition-transform animate-fade-up"
+              style={{ animationDelay: `${index * 200}ms`, animationFillMode: 'forwards' }}
             >
               <h2 className="text-2xl font-semibold text-indigo-400">{edu.title}</h2>
               <p className="text-sm text-gray-400 italic">{edu.institution} | {edu.period}</p>
