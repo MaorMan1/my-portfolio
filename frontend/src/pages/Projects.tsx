@@ -6,43 +6,93 @@ type Project = {
   tech: string[]
   description: string
   year: number
+  github?: string
+  youtube?: string
 }
 
 function Projects() {
   const [projects, setProjects] = useState<Project[]>([])
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
 
   useEffect(() => {
     fetch('https://portfolio-backend-v3in.onrender.com/api/projects')
       .then((res) => res.json())
-      .then((data) => setProjects(data))  
+      .then((data) => setProjects(data))
       .catch((err) => console.error("Failed to fetch projects:", err))
   }, [])
 
-return (
-  <div className="min-h-screen text-white px-4 py-12">
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold text-center mb-10">🎮 My Game Projects</h1>
+  return (
+    <div className="min-h-screen text-white px-4 py-12">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-10">🎮 My Projects</h1>
 
-      <div className="flex flex-wrap justify-center gap-8">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-gray-500 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80"
-          >
-            <h2 className="text-xl font-semibold">{project.name}</h2>
-            <p className="text-sm text-gray-200 mb-2">{project.description}</p>
-            <div className="text-sm">
-              <strong>Technologies:</strong> {project.tech.join(', ')}
+        <div className="flex flex-wrap justify-center gap-8">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80"
+            >
+              <h2 className="text-xl font-semibold mb-2 text-indigo-400">{project.name}</h2>
+              <p className="text-sm text-gray-300 mb-2">{project.description}</p>
+              <p className="text-sm text-gray-400 mb-1"><strong>Tech:</strong> {project.tech.join(', ')}</p>
+              <p className="text-sm text-gray-500"><strong>Year:</strong> {project.year}</p>
+
+              {/* Buttons only if links exist */}
+              {(project.github || project.youtube) && (
+                <div className="flex gap-3 mt-4">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded text-sm font-semibold"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {project.youtube && (
+                    <button
+                      onClick={() => setSelectedVideo(project.youtube!)}
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm font-semibold"
+                    >
+                      Watch Video
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
-            <div className="text-sm">
-              <strong>Year:</strong> {project.year}
+          ))}
+        </div>
+
+        {/* Video Modal */}
+        {selectedVideo && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <div className="w-full max-w-2xl p-4">
+              <div className="relative pb-[56.25%] h-0">
+                <iframe
+                  src={selectedVideo.replace('watch?v=', 'embed/')}
+                  title="Project Video"
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="mt-4 text-sm text-gray-400 hover:text-white"
+              >
+                ✖ Close
+              </button>
             </div>
           </div>
-        ))}
+        )}
       </div>
     </div>
-  </div>
-)
+  )
 }
 
 export default Projects

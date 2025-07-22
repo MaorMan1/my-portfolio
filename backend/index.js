@@ -14,14 +14,18 @@ app.get('/api/projects', (req, res) => {
       name: 'Tetris Remake',
       tech: ['C++', 'SFML', 'OOP'],
       description: 'A 2D Tetris remake using C++ and SFML.',
-      year: 2025
+      year: 2025,
+      github: 'https://github.com/MaorMan1/Tetris-SFML.git',
+      youtube: 'https://www.youtube.com/watch?v=E4neB076gwo'
     },
     {
       id: 2,
       name: 'Blip&Blop Remake',
       tech: ['C++', 'SFML', 'OOP'],
       description: 'A 2D shooters platform game as a final project for an OOP course, using C++ and the SFML library. The game features players defeating enemies and bosses, avoiding bombs, and collecting weapons while navigating through levels.',
-      year: 2023
+      year: 2023,
+      github: 'https://github.com/MaorMan1/Blip-and-Blop.git',
+      youtube: 'https://www.youtube.com/watch?v=sUiOuJve188'
     },
     {
       id: 3,
