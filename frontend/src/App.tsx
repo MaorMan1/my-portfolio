@@ -25,8 +25,8 @@ function App() {
       <Link
         to="/"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-purple-600 transition-colors ${
-          isActive('/') && currentPath === '/' ? 'text-purple-600 font-semibold' : 'text-gray-300'
+        className={`hover:text-indigo-400 transition-colors ${
+          isActive('/') && currentPath === '/' ? 'text-indigo-400 font-semibold' : 'text-gray-300'
         }`}
       >
         Home
@@ -34,8 +34,8 @@ function App() {
       <Link
         to="/projects"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-purple-600 transition-colors ${
-          isActive('/projects') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+        className={`hover:text-indigo-400 transition-colors ${
+          isActive('/projects') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
         }`}
       >
         Projects
@@ -43,8 +43,8 @@ function App() {
       <Link
         to="/education"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-purple-600 transition-colors ${
-          isActive('/education') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+        className={`hover:text-indigo-400 transition-colors ${
+          isActive('/education') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
         }`}
       >
         Education
@@ -52,8 +52,8 @@ function App() {
       <Link
         to="/experience"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-purple-600 transition-colors ${
-          isActive('/experience') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+        className={`hover:text-indigo-400 transition-colors ${
+          isActive('/experience') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
         }`}
       >
         Experience
@@ -61,8 +61,8 @@ function App() {
       <Link
         to="/play"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-purple-600 transition-colors ${
-          isActive('/play') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+        className={`hover:text-indigo-400 transition-colors ${
+          isActive('/play') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
         }`}
       >
         Play
@@ -79,14 +79,14 @@ function App() {
         `}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
+          <div className="text-xl font-bold text-indigo-500">Maor's Portfolio</div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-6 items-center">
             {navLinks}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="ml-4 px-3 py-1 rounded text-sm border border-gray-400 hover:border-purple-500"
+              className="ml-4 px-3 py-1 rounded text-sm border border-gray-600 hover:border-indigo-400"
             >
               {darkMode ? '🌞 Light' : '🌙 Dark'}
             </button>
@@ -106,7 +106,7 @@ function App() {
             {navLinks}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="px-3 py-1 rounded border border-gray-400 w-fit self-start ml-2"
+              className="px-3 py-1 rounded border border-gray-600 w-fit self-start ml-2"
             >
               {darkMode ? '🌞 Light' : '🌙 Dark'}
             </button>
