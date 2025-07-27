@@ -10,7 +10,6 @@ function Play() {
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
 
-    // Make canvas full width while maintaining 3:2 aspect ratio
     const resizeCanvas = () => {
       const scale = Math.min(window.innerWidth / 480, 1)
       canvas.style.transform = `scale(${scale})`
@@ -192,20 +191,20 @@ function Play() {
   }, [restartTrigger])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white px-4 py-8">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white px-4 py-8">
       <h1 className="text-3xl font-bold mb-2 text-indigo-400">🧱 Brick Breaker</h1>
-      <p className="text-sm text-gray-400 mb-3 text-center">
+      <p className="text-sm text-gray-300 mb-3 text-center max-w-sm">
         Tap left or right to move. Break all the bricks!
       </p>
 
       <div className="mb-4 text-lg font-semibold text-green-400">Score: {score}</div>
 
-      <div className="relative w-[480px] h-[320px] max-w-full">
+      <div className="w-full max-w-[480px] aspect-[3/2] mb-4 relative">
         <canvas
           ref={canvasRef}
           width={480}
           height={320}
-          className="absolute left-0 top-0 border-4 border-indigo-500"
+          className="absolute left-0 top-0 w-full h-full border-4 border-indigo-500"
         />
       </div>
 
