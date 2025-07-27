@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 function Play() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [restartTrigger, setRestartTrigger] = useState(0)
+  const [score, setScore] = useState(0)
+  const [gameStatus, setGameStatus] = useState<'playing' | 'won' | 'lost'>('playing')
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -10,14 +12,12 @@ function Play() {
     const width = canvas.width
     const height = canvas.height
 
-    // Ball
     let x = width / 2
     let y = height - 30
     let dx = 2
     let dy = -2
     const ballRadius = 8
 
-    // Paddle
     const paddleHeight = 10
     const paddleWidth = 75
     let paddleX = (width - paddleWidth) / 2
@@ -25,7 +25,6 @@ function Play() {
     let rightPressed = false
     let leftPressed = false
 
-    // Bricks
     const brickRowCount = 3
     const brickColumnCount = 5
     const brickWidth = 75
@@ -33,6 +32,7 @@ function Play() {
     const brickPadding = 10
     const brickOffsetTop = 30
     const brickOffsetLeft = 30
+    let localScore = 0
 
     const bricks: { x: number; y: number; status: number }[][] = []
     for (let c = 0; c < brickColumnCount; c++) {
@@ -41,6 +41,9 @@ function Play() {
         bricks[c][r] = { x: 0, y: 0, status: 1 }
       }
     }
+
+    setScore(0)
+    setGameStatus('playing')
 
     let animationFrameId: number
 
@@ -91,6 +94,13 @@ function Play() {
           ) {
             dy = -dy
             b.status = 0
+            localScore++
+            setScore(localScore)
+            if (localScore === brickRowCount * brickColumnCount) {
+              setGameStatus('won')
+              cancelAnimationFrame(animationFrameId)
+              return
+            }
           }
         }
       }
@@ -112,6 +122,7 @@ function Play() {
         if (x > paddleX && x < paddleX + paddleWidth) {
           dy = -dy
         } else {
+          setGameStatus('lost')
           cancelAnimationFrame(animationFrameId)
           return
         }
@@ -160,17 +171,21 @@ function Play() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white px-4 py-8">
       <h1 className="text-3xl font-bold mb-2 text-indigo-400">🧱 Brick Breaker</h1>
-      <p className="text-sm text-gray-400 mb-6 text-center">
+      <p className="text-sm text-gray-400 mb-3 text-center">
         Use Left and Right arrow keys to control the paddle. Break all the bricks!
       </p>
 
+      <div className="mb-4 text-lg font-semibold text-green-400">Score: {score}</div>
+
       <canvas
         ref={canvasRef}
-        id="gameCanvas"
         width={480}
         height={320}
         className="border-4 border-indigo-500 mb-4"
       />
+
+      {gameStatus === 'won' && <p className="text-green-400 font-bold mb-2">🎉 You Win!</p>}
+      {gameStatus === 'lost' && <p className="text-red-400 font-bold mb-2">💥 Game Over</p>}
 
       <button
         onClick={() => setRestartTrigger((prev) => prev + 1)}
