@@ -29,27 +29,30 @@ function Experience() {
   }
 
   return (
-    <div className="min-h-screen text-white px-4 py-12">
+    <div className="min-h-screen px-4 py-12 text-white">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-10 animate-fade-in">🛠 Work Experience</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10">🛠 Work Experience</h1>
 
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {experiences.map((exp, index) => (
             <div
               key={exp.id}
               onClick={() => toggleExpand(exp.id)}
-              className="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-105 cursor-pointer animate-fade-up"
-              style={{ animationDelay: `${index * 200}ms`, animationFillMode: 'forwards' }}
+              className="bg-gray-800 bg-opacity-90 p-5 sm:p-6 rounded-lg shadow-md border border-gray-700 transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
+              style={{
+                animationDelay: `${index * 200}ms`,
+                animationFillMode: 'forwards',
+              }}
             >
-              <h2 className="text-2xl font-semibold text-indigo-400">{exp.title}</h2>
-              <p className="text-sm text-gray-400 mb-1">
+              <h2 className="text-xl sm:text-2xl font-semibold text-indigo-400">{exp.title}</h2>
+              <p className="text-sm text-gray-400 mt-1">
                 {exp.company} – {exp.location}
               </p>
               <p className="text-sm text-gray-500 italic mb-3">{exp.period}</p>
-              <p className="text-gray-300">
+              <p className="text-gray-300 text-sm sm:text-base">
                 {expandedId === exp.id ? exp.fullDesc : exp.shortDesc}
               </p>
-              <p className="text-indigo-500 mt-2 text-sm">
+              <p className="text-indigo-500 mt-2 text-sm sm:text-base">
                 {expandedId === exp.id ? 'Click to collapse ▲' : 'Click to expand ▼'}
               </p>
             </div>
