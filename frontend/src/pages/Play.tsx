@@ -87,11 +87,11 @@ function Play() {
           const b = bricks[c][r]
           if (
             b.status === 1 &&
-            x > b.x &&
-            x < b.x + brickWidth &&
-            y > b.y &&
-            y < b.y + brickHeight
-          ) {
+            x + ballRadius > b.x &&
+            x - ballRadius < b.x + brickWidth &&
+            y + ballRadius > b.y &&
+            y - ballRadius < b.y + brickHeight
+            ) {
             dy = -dy
             b.status = 0
             localScore++
@@ -119,12 +119,12 @@ function Play() {
       if (y + dy < ballRadius) {
         dy = -dy
       } else if (y + dy > height - ballRadius) {
-        if (x > paddleX && x < paddleX + paddleWidth) {
-          dy = -dy
+        if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddleWidth) {
+            dy = -dy
         } else {
-          setGameStatus('lost')
-          cancelAnimationFrame(animationFrameId)
-          return
+            setGameStatus('lost')
+            cancelAnimationFrame(animationFrameId)
+            return
         }
       }
 
