@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Education from './pages/Education'
 import Experience from './pages/Experience'
+import Play from './pages/Play'
 
 function App() {
   const location = useLocation()  
@@ -59,6 +60,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/education" element={<Education />} />
         <Route path="/experience" element={<Experience />} />
+        <Route path="/play" element={<Play />} />
       </Routes>
     </div>
   )
