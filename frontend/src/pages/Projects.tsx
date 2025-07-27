@@ -32,22 +32,26 @@ function Projects() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10">🎮 My Projects</h1>
 
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform text-left w-full sm:w-80 cursor-pointer"
+              className="bg-gray-800/80 p-6 rounded-lg shadow-lg hover:scale-[1.02] transition-transform text-left w-full max-w-sm cursor-pointer"
               onClick={() => toggleExpand(project.id)}
             >
               <h2 className="text-xl font-semibold mb-2 text-indigo-400">{project.name}</h2>
               <p className="text-sm text-gray-300 mb-2">
                 {expandedId === project.id ? project.fullDesc : project.shortDesc}
               </p>
-              <p className="text-sm text-gray-400 mb-1"><strong>Tech:</strong> {project.tech.join(', ')}</p>
-              <p className="text-sm text-gray-500"><strong>Year:</strong> {project.year}</p>
+              <p className="text-sm text-gray-400 mb-1">
+                <strong>Tech:</strong> {project.tech.join(', ')}
+              </p>
+              <p className="text-sm text-gray-500">
+                <strong>Year:</strong> {project.year}
+              </p>
 
               {(project.github || project.youtube) && (
-                <div className="flex gap-3 mt-4">
+                <div className="flex flex-wrap gap-3 mt-4">
                   {project.github && (
                     <a
                       href={project.github}
@@ -82,10 +86,10 @@ function Projects() {
 
         {selectedVideo && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 px-4"
             onClick={() => setSelectedVideo(null)}
           >
-            <div className="w-full max-w-2xl p-4">
+            <div className="w-full max-w-2xl">
               <div className="relative pb-[56.25%] h-0">
                 <iframe
                   src={selectedVideo.replace('watch?v=', 'embed/')}
@@ -98,7 +102,7 @@ function Projects() {
               </div>
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="mt-4 text-sm text-gray-400 hover:text-white"
+                className="mt-4 text-sm text-gray-400 hover:text-white block mx-auto"
               >
                 ✖ Close
               </button>
