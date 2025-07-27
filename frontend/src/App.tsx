@@ -19,7 +19,7 @@ function App() {
     currentPath === path || currentPath.startsWith(path + '/')
 
   return (
-    <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-white dark:text-white dark:bg-black">
+    <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-red-950 dark:text-white dark:bg-black">
       <nav
         className={`
           sticky top-0 z-50 px-6 py-4 shadow-lg border-b backdrop-blur-md transition-colors duration-300
