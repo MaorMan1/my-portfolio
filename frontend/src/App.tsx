@@ -20,7 +20,12 @@ function App() {
 
   return (
     <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-white dark:text-white dark:bg-black">
-      <nav className="sticky top-0 z-50 bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800 backdrop-blur-md bg-opacity-40 dark:bg-gray-950">
+      <nav
+        className={`
+          sticky top-0 z-50 px-6 py-4 shadow-lg border-b backdrop-blur-md transition-colors duration-300
+          ${darkMode ? 'bg-gray-900 bg-opacity-40 border-gray-800' : 'bg-white bg-opacity-60 border-gray-300 text-gray-800'}
+        `}
+      >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
 
@@ -67,9 +72,9 @@ function App() {
             </Link>
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="ml-2 px-3 py-1 text-sm rounded bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="ml-4 px-3 py-1 rounded text-sm border border-gray-400 hover:border-purple-500"
             >
-              {darkMode ? '🌞 Light' : '🌙 Dark'}
+              {darkMode ? '☀ Light' : '🌙 Dark'}
             </button>
           </div>
         </div>
