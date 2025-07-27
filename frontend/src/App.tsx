@@ -7,89 +7,72 @@ import Experience from './pages/Experience'
 import Play from './pages/Play'
 
 function App() {
-  const location = useLocation()
-  const [menuOpen, setMenuOpen] = useState(false)
-
+  const location = useLocation()  
   const currentPath = location.pathname
+  const [darkMode, setDarkMode] = useState(true)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode)
+  }, [darkMode])
+
   const isActive = (path: string) =>
     currentPath === path || currentPath.startsWith(path + '/')
 
-  useEffect(() => {
-    // Auto-close menu on navigation
-    setMenuOpen(false)
-  }, [location])
-
   return (
-    <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-white">
-      <nav className="sticky top-0 z-50 bg-gray-900 bg-opacity-40 backdrop-blur-md border-b border-gray-800 shadow-lg">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div className="font-pixel min-h-screen bg-main-bg bg-cover bg-center bg-no-repeat text-white dark:text-white dark:bg-black">
+      <nav className="sticky top-0 z-50 bg-gray-900 px-6 py-4 shadow-lg border-b border-gray-800 backdrop-blur-md bg-opacity-40 dark:bg-gray-950">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold text-purple-600">Maor's Portfolio</div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6">
-            {[
-              { to: '/', label: 'Home' },
-              { to: '/projects', label: 'Projects' },
-              { to: '/education', label: 'Education' },
-              { to: '/experience', label: 'Experience' },
-              { to: '/play', label: 'Play' },
-            ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`hover:text-purple-600 transition-colors ${
-                  isActive(link.to)
-                    ? 'text-purple-600 font-semibold'
-                    : 'text-gray-300'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="flex gap-6 items-center">
+            <Link
+              to="/"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/') && currentPath === '/' ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/projects"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/projects') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Projects
+            </Link>
+            <Link
+              to="/education"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/education') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Education
+            </Link>
+            <Link
+              to="/experience"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/experience') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Experience
+            </Link>
+            <Link
+              to="/play"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/play') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Play
+            </Link>
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="ml-2 px-3 py-1 text-sm rounded bg-indigo-600 hover:bg-indigo-700 text-white"
+            >
+              {darkMode ? '🌞 Light' : '🌙 Dark'}
+            </button>
           </div>
-
-          {/* Mobile Toggle Button */}
-          <button
-            className="md:hidden text-white focus:outline-none"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
-              viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d={menuOpen
-                  ? 'M6 18L18 6M6 6l12 12' // X icon
-                  : 'M4 6h16M4 12h16M4 18h16'} // Hamburger icon
-              />
-            </svg>
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden px-6 pb-4 space-y-2">
-            {[
-              { to: '/', label: 'Home' },
-              { to: '/projects', label: 'Projects' },
-              { to: '/education', label: 'Education' },
-              { to: '/experience', label: 'Experience' },
-              { to: '/play', label: 'Play' },
-            ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`block hover:text-purple-400 transition-colors ${
-                  isActive(link.to)
-                    ? 'text-purple-400 font-semibold'
-                    : 'text-gray-300'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        )}
       </nav>
 
       <Routes>
