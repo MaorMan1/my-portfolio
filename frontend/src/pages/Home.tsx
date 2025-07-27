@@ -34,7 +34,7 @@ function Home() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center text-white overflow-hidden">
-      {/* 🔮 Static blurred glow behind profile image */}
+      {/* 🔮 Glow behind profile image */}
       <div className="absolute w-72 h-72 bg-indigo-600 opacity-30 blur-3xl rounded-full top-20 animate-pulse z-0" />
 
       {/* 👤 Profile Picture */}
@@ -42,28 +42,28 @@ function Home() {
         <img
           src={profilePic}
           alt="Profile"
-          className="w-32 h-32 rounded-full mb-6 border-4 border-indigo-500 shadow-xl hover:scale-105 transition-transform duration-300 animate-fade-in"
+          className="w-28 h-28 sm:w-32 sm:h-32 rounded-full mb-6 border-4 border-indigo-500 shadow-xl hover:scale-105 transition-transform duration-300"
         />
       </div>
 
-      <h1 className="text-5xl font-bold mb-6 text-gray-300 z-10 animate-fade-in delay-100">
+      <h1 className="text-3xl sm:text-5xl font-bold mb-4 sm:mb-6 text-gray-300 z-10">
         👋 Hi, I'm Maor Man
       </h1>
 
-      <p className="text-lg text-indigo-300 mb-2 animate-fade-in delay-200">
+      <p className="text-base sm:text-lg text-indigo-300 mb-4 sm:mb-6">
         Game Developer | Software Engineer | Avionics Technician
       </p>
 
-      {/* 📝 Description with interactive glow */}
+      {/* 💬 Description */}
       <div
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
         onMouseLeave={handleMouseLeave}
         onTouchEnd={handleTouchEnd}
-        className="relative group max-w-3xl mb-8"
+        className="relative group max-w-2xl sm:max-w-3xl px-2 sm:px-4 mb-8"
       >
-        {/* 🔵 Glow that appears on hover/touch */}
+        {/* Interactive Glow */}
         <div
           className={`absolute w-48 h-48 bg-indigo-500 rounded-full blur-3xl pointer-events-none transition-opacity duration-300 ${
             showGlow ? 'opacity-60' : 'opacity-0'
@@ -73,7 +73,7 @@ function Home() {
           }}
         />
 
-        <p className="text-xl leading-relaxed text-gray-300 z-10 relative">
+        <p className="text-base sm:text-xl leading-relaxed text-gray-300 z-10 relative">
           I'm a passionate developer who enjoys turning ideas into working code.<br />
           I recently completed a B.Sc. in Computer Science and created games like Tetris and Blip and Blop using C++ and SFML.<br />
           I love writing clean and efficient code, and I care about user experience.<br />
@@ -82,12 +82,12 @@ function Home() {
       </div>
 
       {/* 🌐 Social Icons */}
-      <div className="flex space-x-6 text-4xl z-10">
+      <div className="flex space-x-6 text-3xl sm:text-4xl mb-6 z-10">
         <a
           href="https://github.com/MaorMan1"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200"
+          className="hover:text-indigo-500 transition-transform hover:scale-110 duration-200"
         >
           <FaGithub title="GitHub" />
         </a>
@@ -95,22 +95,24 @@ function Home() {
           href="https://www.linkedin.com/in/maorman"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200"
+          className="hover:text-indigo-500 transition-transform hover:scale-110 duration-200"
         >
           <FaLinkedin title="LinkedIn" />
         </a>
         <a
           href="mailto:maorman777@gmail.com"
-          className="hover:text-indigo-500 transition-colors hover:scale-110 duration-200"
+          className="hover:text-indigo-500 transition-transform hover:scale-110 duration-200"
         >
           <FaEnvelope title="Email" />
         </a>
       </div>
+
+      {/* 🔗 Button to Projects */}
       <Link
         to="/projects"
-        className="mt-8 px-6 py-3 bg-indigo-600 text-white font-bold rounded border-4 border-indigo-800 shadow-lg 
-                  hover:bg-indigo-700 hover:shadow-indigo-500 transition duration-300
-                  text-xl tracking-wider"
+        className="mt-4 px-6 py-3 bg-indigo-600 text-white font-bold rounded border-4 border-indigo-800 shadow-lg 
+                hover:bg-indigo-700 hover:shadow-indigo-500 transition duration-300
+                text-lg sm:text-xl tracking-wider"
       >
         ▶ View My Projects
       </Link>
