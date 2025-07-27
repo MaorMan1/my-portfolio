@@ -51,6 +51,14 @@ function App() {
             >
               Experience
             </Link>
+            <Link
+              to="/play"
+              className={`hover:text-purple-600 transition-colors ${
+                isActive('/play') ? 'text-purple-600 font-semibold' : 'text-gray-300'
+              }`}
+            >
+              Play
+            </Link>
           </div>
         </div>
       </nav>
