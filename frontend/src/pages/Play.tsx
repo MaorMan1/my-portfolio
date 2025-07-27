@@ -1,8 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function Play() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [restartTrigger, setRestartTrigger] = useState(0)
+
   useEffect(() => {
-    const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement
+    const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
     const width = canvas.width
     const height = canvas.height
@@ -38,6 +41,8 @@ function Play() {
         bricks[c][r] = { x: 0, y: 0, status: 1 }
       }
     }
+
+    let animationFrameId: number
 
     function drawBall() {
       ctx.beginPath()
@@ -77,16 +82,15 @@ function Play() {
       for (let c = 0; c < brickColumnCount; c++) {
         for (let r = 0; r < brickRowCount; r++) {
           const b = bricks[c][r]
-          if (b.status === 1) {
-            if (
-              x > b.x &&
-              x < b.x + brickWidth &&
-              y > b.y &&
-              y < b.y + brickHeight
-            ) {
-              dy = -dy
-              b.status = 0
-            }
+          if (
+            b.status === 1 &&
+            x > b.x &&
+            x < b.x + brickWidth &&
+            y > b.y &&
+            y < b.y + brickHeight
+          ) {
+            dy = -dy
+            b.status = 0
           }
         }
       }
@@ -99,7 +103,6 @@ function Play() {
       drawPaddle()
       collisionDetection()
 
-      // Bounce off walls
       if (x + dx > width - ballRadius || x + dx < ballRadius) {
         dx = -dx
       }
@@ -109,21 +112,21 @@ function Play() {
         if (x > paddleX && x < paddleX + paddleWidth) {
           dy = -dy
         } else {
-          document.location.reload()
+          cancelAnimationFrame(animationFrameId)
+          return
         }
       }
 
       x += dx
       y += dy
 
-      // Move paddle
       if (rightPressed && paddleX < width - paddleWidth) {
         paddleX += 5
       } else if (leftPressed && paddleX > 0) {
         paddleX -= 5
       }
 
-      requestAnimationFrame(draw)
+      animationFrameId = requestAnimationFrame(draw)
     }
 
     function keyDownHandler(e: KeyboardEvent) {
@@ -150,12 +153,31 @@ function Play() {
     return () => {
       document.removeEventListener('keydown', keyDownHandler)
       document.removeEventListener('keyup', keyUpHandler)
+      cancelAnimationFrame(animationFrameId)
     }
-  }, [])
+  }, [restartTrigger])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 text-white px-4">
-      <canvas id="gameCanvas" width={480} height={320} className="border-4 border-indigo-500" />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white px-4 py-8">
+      <h1 className="text-3xl font-bold mb-2 text-indigo-400">🧱 Brick Breaker</h1>
+      <p className="text-sm text-gray-400 mb-6 text-center">
+        Use Left and Right arrow keys to control the paddle. Break all the bricks!
+      </p>
+
+      <canvas
+        ref={canvasRef}
+        id="gameCanvas"
+        width={480}
+        height={320}
+        className="border-4 border-indigo-500 mb-4"
+      />
+
+      <button
+        onClick={() => setRestartTrigger((prev) => prev + 1)}
+        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
+      >
+        Restart Game
+      </button>
     </div>
   )
 }
