@@ -1,5 +1,6 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
@@ -25,45 +26,35 @@ function App() {
       <Link
         to="/"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-indigo-400 transition-colors ${
-          isActive('/') && currentPath === '/' ? 'text-indigo-500 font-semibold' : 'text-gray-300'
-        }`}
+        className={`hover:text-indigo-400 transition-colors ${isActive('/') && currentPath === '/' ? 'text-indigo-500 font-semibold' : 'text-gray-300'}`}
       >
         Home
       </Link>
       <Link
         to="/projects"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-indigo-400 transition-colors ${
-          isActive('/projects') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
-        }`}
+        className={`hover:text-indigo-400 transition-colors ${isActive('/projects') ? 'text-indigo-500 font-semibold' : 'text-gray-300'}`}
       >
         Projects
       </Link>
       <Link
         to="/education"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-indigo-400 transition-colors ${
-          isActive('/education') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
-        }`}
+        className={`hover:text-indigo-400 transition-colors ${isActive('/education') ? 'text-indigo-500 font-semibold' : 'text-gray-300'}`}
       >
         Education
       </Link>
       <Link
         to="/experience"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-indigo-400 transition-colors ${
-          isActive('/experience') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
-        }`}
+        className={`hover:text-indigo-400 transition-colors ${isActive('/experience') ? 'text-indigo-500 font-semibold' : 'text-gray-300'}`}
       >
         Experience
       </Link>
       <Link
         to="/play"
         onClick={() => setMenuOpen(false)}
-        className={`hover:text-indigo-400 transition-colors ${
-          isActive('/play') ? 'text-indigo-500 font-semibold' : 'text-gray-300'
-        }`}
+        className={`hover:text-indigo-400 transition-colors ${isActive('/play') ? 'text-indigo-500 font-semibold' : 'text-gray-300'}`}
       >
         Play
       </Link>
@@ -114,13 +105,24 @@ function App() {
         )}
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/play" element={<Play />} />
-      </Routes>
+      {/* Smooth Page Transitions */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.4 }}
+        >
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/play" element={<Play />} />
+          </Routes>
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
