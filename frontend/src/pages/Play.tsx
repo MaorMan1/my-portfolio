@@ -107,37 +107,47 @@ function Play() {
     }
 
     function draw() {
-      ctx.clearRect(0, 0, width, height)
-      drawBricks()
-      drawBall()
-      drawPaddle()
-      collisionDetection()
+        ctx.clearRect(0, 0, width, height)
+        drawBricks()
+        drawBall()
+        drawPaddle()
+        collisionDetection()
 
-      if (x + dx > width - ballRadius || x + dx < ballRadius) {
-        dx = -dx
-      }
-      if (y + dy < ballRadius) {
-        dy = -dy
-      } else if (y + dy > height - ballRadius) {
-        if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddleWidth) {
+        // Wall collision (left and right)
+        if (x + dx > width - ballRadius || x + dx < ballRadius) {
+            dx = -dx
+        }
+
+        // Ceiling collision
+        if (y + dy < ballRadius) {
             dy = -dy
-        } else {
+        }
+
+        // Paddle / bottom collision
+        else if (y + dy > height - ballRadius) {
+            if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddleWidth) {
+            // Add variation based on where the ball hits the paddle
+            const hitPoint = x - (paddleX + paddleWidth / 2)
+            dx = hitPoint * 0.15 // Control angle sensitivity
+            dy = -dy
+            } else {
             setGameStatus('lost')
             cancelAnimationFrame(animationFrameId)
             return
+            }
         }
-      }
 
-      x += dx
-      y += dy
+        x += dx
+        y += dy
 
-      if (rightPressed && paddleX < width - paddleWidth) {
-        paddleX += 5
-      } else if (leftPressed && paddleX > 0) {
-        paddleX -= 5
-      }
+        // Paddle movement
+        if (rightPressed && paddleX < width - paddleWidth) {
+            paddleX += 5
+        } else if (leftPressed && paddleX > 0) {
+            paddleX -= 5
+        }
 
-      animationFrameId = requestAnimationFrame(draw)
+        animationFrameId = requestAnimationFrame(draw)
     }
 
     function keyDownHandler(e: KeyboardEvent) {
