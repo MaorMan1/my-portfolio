@@ -9,6 +9,16 @@ function Play() {
   useEffect(() => {
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
+
+    // Make canvas full width while maintaining 3:2 aspect ratio
+    const resizeCanvas = () => {
+      const scale = Math.min(window.innerWidth / 480, 1)
+      canvas.style.transform = `scale(${scale})`
+      canvas.style.transformOrigin = 'top center'
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+
     const width = canvas.width
     const height = canvas.height
 
@@ -91,7 +101,7 @@ function Play() {
             x - ballRadius < b.x + brickWidth &&
             y + ballRadius > b.y &&
             y - ballRadius < b.y + brickHeight
-            ) {
+          ) {
             dy = -dy
             b.status = 0
             localScore++
@@ -107,73 +117,76 @@ function Play() {
     }
 
     function draw() {
-        ctx.clearRect(0, 0, width, height)
-        drawBricks()
-        drawBall()
-        drawPaddle()
-        collisionDetection()
+      ctx.clearRect(0, 0, width, height)
+      drawBricks()
+      drawBall()
+      drawPaddle()
+      collisionDetection()
 
-        // Wall collision (left and right)
-        if (x + dx > width - ballRadius || x + dx < ballRadius) {
-            dx = -dx
+      if (x + dx > width - ballRadius || x + dx < ballRadius) dx = -dx
+      if (y + dy < ballRadius) dy = -dy
+      else if (y + dy > height - ballRadius) {
+        if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddleWidth) {
+          const hitPoint = x - (paddleX + paddleWidth / 2)
+          dx = hitPoint * 0.15
+          dy = -dy
+        } else {
+          setGameStatus('lost')
+          cancelAnimationFrame(animationFrameId)
+          return
         }
+      }
 
-        // Ceiling collision
-        if (y + dy < ballRadius) {
-            dy = -dy
-        }
+      x += dx
+      y += dy
 
-        // Paddle / bottom collision
-        else if (y + dy > height - ballRadius) {
-            if (x + ballRadius > paddleX && x - ballRadius < paddleX + paddleWidth) {
-            // Add variation based on where the ball hits the paddle
-            const hitPoint = x - (paddleX + paddleWidth / 2)
-            dx = hitPoint * 0.15 // Control angle sensitivity
-            dy = -dy
-            } else {
-            setGameStatus('lost')
-            cancelAnimationFrame(animationFrameId)
-            return
-            }
-        }
+      if (rightPressed && paddleX < width - paddleWidth) {
+        paddleX += 5
+      } else if (leftPressed && paddleX > 0) {
+        paddleX -= 5
+      }
 
-        x += dx
-        y += dy
-
-        // Paddle movement
-        if (rightPressed && paddleX < width - paddleWidth) {
-            paddleX += 5
-        } else if (leftPressed && paddleX > 0) {
-            paddleX -= 5
-        }
-
-        animationFrameId = requestAnimationFrame(draw)
+      animationFrameId = requestAnimationFrame(draw)
     }
 
     function keyDownHandler(e: KeyboardEvent) {
-      if (e.key === 'Right' || e.key === 'ArrowRight') {
-        rightPressed = true
-      } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-        leftPressed = true
-      }
+      if (e.key === 'Right' || e.key === 'ArrowRight') rightPressed = true
+      else if (e.key === 'Left' || e.key === 'ArrowLeft') leftPressed = true
     }
 
     function keyUpHandler(e: KeyboardEvent) {
-      if (e.key === 'Right' || e.key === 'ArrowRight') {
-        rightPressed = false
-      } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
-        leftPressed = false
-      }
+      if (e.key === 'Right' || e.key === 'ArrowRight') rightPressed = false
+      else if (e.key === 'Left' || e.key === 'ArrowLeft') leftPressed = false
+    }
+
+    function touchHandler(e: TouchEvent) {
+      const touchX = e.touches[0].clientX
+      rightPressed = touchX > window.innerWidth / 2
+      leftPressed = touchX < window.innerWidth / 2
+    }
+
+    function stopTouch() {
+      rightPressed = false
+      leftPressed = false
     }
 
     document.addEventListener('keydown', keyDownHandler)
     document.addEventListener('keyup', keyUpHandler)
+    canvas.addEventListener('touchstart', touchHandler)
+    canvas.addEventListener('touchmove', touchHandler)
+    canvas.addEventListener('touchend', stopTouch)
+    canvas.addEventListener('touchcancel', stopTouch)
 
     draw()
 
     return () => {
       document.removeEventListener('keydown', keyDownHandler)
       document.removeEventListener('keyup', keyUpHandler)
+      canvas.removeEventListener('touchstart', touchHandler)
+      canvas.removeEventListener('touchmove', touchHandler)
+      canvas.removeEventListener('touchend', stopTouch)
+      canvas.removeEventListener('touchcancel', stopTouch)
+      window.removeEventListener('resize', resizeCanvas)
       cancelAnimationFrame(animationFrameId)
     }
   }, [restartTrigger])
@@ -182,24 +195,26 @@ function Play() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white px-4 py-8">
       <h1 className="text-3xl font-bold mb-2 text-indigo-400">🧱 Brick Breaker</h1>
       <p className="text-sm text-gray-400 mb-3 text-center">
-        Use Left and Right arrow keys to control the paddle. Break all the bricks!
+        Tap left or right to move. Break all the bricks!
       </p>
 
       <div className="mb-4 text-lg font-semibold text-green-400">Score: {score}</div>
 
-      <canvas
-        ref={canvasRef}
-        width={480}
-        height={320}
-        className="border-4 border-indigo-500 mb-4"
-      />
+      <div className="relative w-[480px] h-[320px] max-w-full">
+        <canvas
+          ref={canvasRef}
+          width={480}
+          height={320}
+          className="absolute left-0 top-0 border-4 border-indigo-500"
+        />
+      </div>
 
-      {gameStatus === 'won' && <p className="text-green-400 font-bold mb-2">🎉 You Win!</p>}
-      {gameStatus === 'lost' && <p className="text-red-400 font-bold mb-2">💥 Game Over</p>}
+      {gameStatus === 'won' && <p className="text-green-400 font-bold mt-4">🎉 You Win!</p>}
+      {gameStatus === 'lost' && <p className="text-red-400 font-bold mt-4">💥 Game Over</p>}
 
       <button
         onClick={() => setRestartTrigger((prev) => prev + 1)}
-        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
+        className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded"
       >
         Restart Game
       </button>
