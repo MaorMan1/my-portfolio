@@ -26,7 +26,7 @@ function App() {
         to="/"
         onClick={() => setMenuOpen(false)}
         className={`hover:text-indigo-400 transition-colors ${
-          isActive('/') && currentPath === '/' ? 'text-indigo-400 font-semibold' : 'text-gray-300'
+          isActive('/') && currentPath === '/' ? 'text-indigo-500 font-semibold' : 'text-gray-300'
         }`}
       >
         Home
@@ -79,7 +79,7 @@ function App() {
         `}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl font-bold text-indigo-500">Maor's Portfolio</div>
+          <div className="text-xl font-bold text-indigo-500 dark:text-indigo-300">Maor's Portfolio</div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-6 items-center">
